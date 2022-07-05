@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<link type="text/css" href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
 	<title>{{title}}</title>
 </head>
-<body>
-<ul class="mainmenu">
-</ul>
 
-<div class="content">
-</div>
+<body>
+	<ul class="mainmenu">
+	</ul>
+	{% block content %}
+	{% endblock %}
+	<div class="content">
+	</div>
 </body>
+
 </html>
