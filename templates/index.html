@@ -1,7 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
 <form action="/" method="post" class="inputForm" enctype="multipart/form-data">
     <h1>давай давай в бд</h1>
     <input type="file" accept=".zip,.rar,.7zip,.m3d" name="fileHandler" class="fileName" />
