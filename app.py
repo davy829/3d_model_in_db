@@ -1,23 +1,26 @@
 import time
-from flask import Flask, g, render_template, request
+from flask import Flask, flash, g, redirect, render_template, request, url_for
 import sqlite3
 from DBhandler.DBhandler import DBHandler
 import os
 from models.Dmodel import Dmodel
+from werkzeug.utils import secure_filename
 
+UPLOAD_FOLDER = '/Compas_3D_Files'
 
 app = Flask(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'database.db')))
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-controller = None
+dbhandler = None
 
 
 @app.before_request
 def before_request():
     # Устанавливаем соединение с БД
-    global controller
-    controller = DBHandler(get_db())
+    global dbhandler
+    dbhandler = DBHandler(get_db())
 
 
 def connect_db():
@@ -45,7 +48,20 @@ def close_db(error):
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == 'POST':
-        model = Dmodel(int(time.time()), )
+        description = request.files['fileDescription']
+        file = request.form['fileHandler']
+        model = Dmodel(int(time.time()), description)
+        if file:
+            filename = secure_filename(model.get_id())
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            res = model.addItem(dbhandler)
+            if res:
+                flash("Вы успешно добавили модель!", "success")
+                return redirect(url_for('/'))
+            else:
+                flash("Ошибка при добавлении в БД", "error")
+
+
     return render_template("index.html")
 
 
