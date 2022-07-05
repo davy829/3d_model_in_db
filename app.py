@@ -21,14 +21,6 @@ def connect_db():
     conn.row_factory = sqlite3.Row
     return conn
 
-def create_db():
-    # Вспомогательная функция для создания таблиц БД
-    db = connect_db()
-    with app.open_resource('games.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
-    db.close()
-
 def get_db():
     #Соединение с БД, если оно еще не установлено
     if not hasattr(g, 'link_db'):
