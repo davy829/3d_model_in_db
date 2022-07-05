@@ -50,12 +50,11 @@ def index():
         model = Dmodel(int(time.time()), 'description')
         if file:
             filename = secure_filename(file.filename)
-            print(file.filename, filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(model.get_id()) + filename))
             res = model.addItem(dbhandler)
             if res:
                 flash("Вы успешно добавили модель!", "success")
-                return redirect(url_for('/'))
+                return redirect(url_for('index'))
             else:
                 flash("Ошибка при добавлении в БД", "error")
 

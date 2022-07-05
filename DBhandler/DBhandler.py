@@ -18,7 +18,7 @@ class DBHandler():
     # Добавить элемент в таблицу
     def addItem(self, table, args):
         items = ','.join(["'" + str(field) + "'" for field in args])
-        print(items)
+        print(items, " ", table)
         try:
             self.__cur.execute(f"INSERT INTO {table} VALUES ({items});")
             self.__db.commit()
