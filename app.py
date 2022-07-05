@@ -44,10 +44,9 @@ def close_db(error):
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == 'POST':
-        #print(*request.form)
-        #description = request.form['fileDescription']
+        description = request.form['fileDescription']
         file = request.files['fileHandler']
-        model = Dmodel(int(time.time()), 'description')
+        model = Dmodel(int(time.time()), description)
         if file:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(model.get_id()) + filename))
