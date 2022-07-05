@@ -43,16 +43,14 @@ def close_db(error):
         g.link_db.close()
 
 # базовая страница
-
-
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == 'POST':
-        description = request.files['fileDescription']
-        file = request.form['fileHandler']
+        description = request.form['fileDescription']
+        file = request.files['fileHandler']
         model = Dmodel(int(time.time()), description)
         if file:
-            filename = secure_filename(model.get_id())
+            filename = secure_filename(str(model.get_id()))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             res = model.addItem(dbhandler)
             if res:
