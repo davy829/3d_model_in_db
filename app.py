@@ -6,15 +6,13 @@ import os
 from models.Dmodel import Dmodel
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/Compas_3D_Files'
+UPLOAD_FOLDER = '3d_model_in_db/Compas_3D_Files'
 
 app = Flask(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'database.db')))
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
 dbhandler = None
-
 
 @app.before_request
 def before_request():
@@ -46,12 +44,14 @@ def close_db(error):
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == 'POST':
-        description = request.form['fileDescription']
+        #print(*request.form)
+        #description = request.form['fileDescription']
         file = request.files['fileHandler']
-        model = Dmodel(int(time.time()), description)
+        model = Dmodel(int(time.time()), 'description')
         if file:
-            filename = secure_filename(str(model.get_id()))
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filename = secure_filename(file.filename)
+            print(file.filename, filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(model.get_id()) + filename))
             res = model.addItem(dbhandler)
             if res:
                 flash("Вы успешно добавили модель!", "success")
