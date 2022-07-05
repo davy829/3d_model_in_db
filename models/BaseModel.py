@@ -7,22 +7,22 @@ class BaseModel():
 
     # Получить все записи для модели
     @staticmethod
-    def getAll(table: str, controller: DBHandler) -> list:
-        return controller.getItems(table)
+    def getAll(table: str, dbhandler: DBHandler) -> list:
+        return dbhandler.getItems(table)
 
     # Получить элемент модели по ID
     @staticmethod
-    def getItemByID(table: str, id: int, controller: DBHandler) -> tuple:
-        return controller.getItemById(table, id)
+    def getItemByID(table: str, id: int, dbhandler: DBHandler) -> tuple:
+        return dbhandler.getItemById(table, id)
 
     # Удалить элемент модели по ID
     @staticmethod
-    def deleteItemByID(table: str, id: int, controller: DBHandler) -> bool:
-        return controller.deleteItemById(table, id)
+    def deleteItemByID(table: str, id: int, dbhandler: DBHandler) -> bool:
+        return dbhandler.deleteItemById(table, id)
 
     # Добавить элемент 
-    def addItem(self, controller: DBHandler):
-        return controller.addItem(self.table, self.getAllFields())
+    def addItem(self, dbhandler: DBHandler):
+        return dbhandler.addItem(self.table, self.getAllFields())
 
     # Получить все поля объекта для его сериализации
     def getAllFields(self):
