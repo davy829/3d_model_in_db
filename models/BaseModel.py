@@ -21,7 +21,7 @@ class BaseModel():
         return dbhandler.deleteItemById(table, id)
 
     # Добавить элемент 
-    def addItem(self, dbhandler: DBHandler):
+    def addItem(self, dbhandler: DBHandler) -> bool:
         return dbhandler.addItem(self.table, self.getAllFields())
 
     # Получить все поля объекта для его сериализации

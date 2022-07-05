@@ -7,7 +7,7 @@ class Dmodel(BaseModel):
         self._id = id
         self._description = description
 
-    table = "Models"
+    table = "3Dmodels"
 
     def get_id(self):
         return self._id
