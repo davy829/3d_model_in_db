@@ -11,6 +11,8 @@
 			<li>Описание модели: {{model.get_description()}}</li>	
 		</ul>
 	</li>
+	{% else %}
+	<div style="display: none; height: 0px">{{ model.deleteItemByID(db) }}</div>
 	{% endif %}
 	<br>
 	{% endfor %}

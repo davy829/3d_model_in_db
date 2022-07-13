@@ -40,8 +40,9 @@ class DBHandler():
 
     # Удалить элемент по ID
     def deleteItemById(self, table, id):
+        print(id, " ", table)
         try:
-            self.__cur.execute(f"DELETE FROM {table} WHERE ID = {id} LIMIT 1;")
+            self.__cur.execute(f"DELETE FROM {table} WHERE ID = {id};")
             self.__db.commit()
         except sqlite3.Error as e:
             print('Ошибка удаления записи из БД', e)

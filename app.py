@@ -66,7 +66,7 @@ def index():
 @app.route("/show_models")
 def show_models():
     models = [Dmodel(*model) for model in Dmodel.getAll(dbhandler)]
-    return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str)
+    return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str, db=dbhandler)
 
 
 # Точка входа
