@@ -6,7 +6,7 @@ import os
 from models.Dmodel import Dmodel
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '3d_model_in_db/Compas_3D_Files'
+UPLOAD_FOLDER = 'Compas_3D_Files'
 
 app = Flask(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'database.db')))
