@@ -36,6 +36,7 @@ database.db-journal
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+database.db
 
 # Unit test / coverage reports
 Compas_3D_Files/*

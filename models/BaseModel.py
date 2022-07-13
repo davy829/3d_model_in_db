@@ -6,19 +6,16 @@ class BaseModel():
     table = 'BASETABLE'
 
     # Получить все записи для модели
-    @staticmethod
-    def getAll(table: str, dbhandler: DBHandler) -> list:
-        return dbhandler.getItems(table)
+    def getAll(self, dbhandler: DBHandler) -> list:
+        return dbhandler.getItems(self.table)
 
     # Получить элемент модели по ID
-    @staticmethod
-    def getItemByID(table: str, id: int, dbhandler: DBHandler) -> tuple:
-        return dbhandler.getItemById(table, id)
+    def getItemByID(self, id: int, dbhandler: DBHandler) -> tuple:
+        return dbhandler.getItemById(self.table, id)
 
     # Удалить элемент модели по ID
-    @staticmethod
-    def deleteItemByID(table: str, id: int, dbhandler: DBHandler) -> bool:
-        return dbhandler.deleteItemById(table, id)
+    def deleteItemByID(self, id: int, dbhandler: DBHandler) -> bool:
+        return dbhandler.deleteItemById(self.table, id)
 
     # Добавить элемент 
     def addItem(self, dbhandler: DBHandler) -> bool:

@@ -40,6 +40,7 @@ def close_db(error):
     if hasattr(g, 'link_db'):
         g.link_db.close()
 
+
 # базовая страница
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -59,6 +60,12 @@ def index():
 
 
     return render_template("index.html")
+
+
+@app.route("/show_models")
+def show_models():
+    models = [Dmodel(*model) for model in Dmodel.getAll(dbhandler)]
+    return render_template("show_models", models=models)
 
 
 # Точка входа
