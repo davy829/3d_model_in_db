@@ -1,3 +1,4 @@
+from DBhandler.DBhandler import DBHandler
 from models.BaseModel import BaseModel
 
 
@@ -7,10 +8,16 @@ class Dmodel(BaseModel):
         self._id = id
         self._description = description
 
-    table = "'3Dmodels'"
+    @staticmethod
+    def get_table():
+        return "'3Dmodels'"
 
     def get_id(self):
         return self._id
+
+    @staticmethod
+    def getAll(dbhandler: DBHandler) -> list:
+        return dbhandler.getItems(Dmodel.get_table())
 
     def getAllFields(self):
         return (self._id, self._description)

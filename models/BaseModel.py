@@ -3,23 +3,26 @@ from DBhandler.DBhandler import DBHandler
 #Базовый класс модели
 class BaseModel():
 
-    table = 'BASETABLE'
+    @staticmethod
+    def get_table():
+        return "Basemodel"
 
     # Получить все записи для модели
-    def getAll(self, dbhandler: DBHandler) -> list:
-        return dbhandler.getItems(self.table)
+    @staticmethod
+    def getAll(dbhandler: DBHandler) -> list:
+        return dbhandler.getItems(BaseModel.get_table())
 
     # Получить элемент модели по ID
     def getItemByID(self, id: int, dbhandler: DBHandler) -> tuple:
-        return dbhandler.getItemById(self.table, id)
+        return dbhandler.getItemById(type(self).get_table(), id)
 
     # Удалить элемент модели по ID
     def deleteItemByID(self, id: int, dbhandler: DBHandler) -> bool:
-        return dbhandler.deleteItemById(self.table, id)
+        return dbhandler.deleteItemById(type(self).get_table(), id)
 
     # Добавить элемент 
     def addItem(self, dbhandler: DBHandler) -> bool:
-        return dbhandler.addItem(self.table, self.getAllFields())
+        return dbhandler.addItem(type(self).get_table(), self.getAllFields())
 
     # Получить все поля объекта для его сериализации
     def getAllFields(self):
