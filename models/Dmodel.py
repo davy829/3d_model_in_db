@@ -14,6 +14,9 @@ class Dmodel(BaseModel):
 
     def get_id(self):
         return self._id
+    
+    def get_description(self):
+        return self._description
 
     @staticmethod
     def getAll(dbhandler: DBHandler) -> list:
