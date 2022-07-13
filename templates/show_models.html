@@ -2,14 +2,16 @@
 
 {% block content %}
 <ul>
-{% for model in models %}
-<li>
-	<ul>
-	<li>ID модели: {{model.get_id()}}</li>
-    <li>Описание модели: {{model.get_description()}}</li>
-	</ul>
-</li>
-<br>
-{% endfor %}
+	{% for model in models %}
+	{% if ospath('Compas_3D_Files/' + toString(model.get_id()) + model.name) %}
+	<li>
+		<ul>
+			<li>ID модели: {{model.get_id()}}</li>
+			<li>Описание модели: {{model.get_description()}}</li>
+		</ul>
+	</li>
+	{% endif %}
+	<br>
+	{% endfor %}
 </ul>
 {% endblock %}

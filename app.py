@@ -7,6 +7,7 @@ from models.Dmodel import Dmodel
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'Compas_3D_Files'
+if not os.path.exists(UPLOAD_FOLDER): os.makedirs(UPLOAD_FOLDER)
 
 app = Flask(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'database.db')))
@@ -47,9 +48,9 @@ def index():
     if request.method == 'POST':
         description = request.form['fileDescription']
         file = request.files['fileHandler']
-        model = Dmodel(int(time.time()), description)
         if file:
             filename = secure_filename(file.filename)
+            model = Dmodel(int(time.time()), filename, description)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(model.get_id()) + filename))
             res = model.addItem(dbhandler)
             if res:
@@ -65,7 +66,7 @@ def index():
 @app.route("/show_models")
 def show_models():
     models = [Dmodel(*model) for model in Dmodel.getAll(dbhandler)]
-    return render_template("show_models.html", models=models)
+    return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str)
 
 
 # Точка входа

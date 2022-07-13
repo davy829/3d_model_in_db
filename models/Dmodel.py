@@ -3,14 +3,15 @@ from models.BaseModel import BaseModel
 
 
 class Dmodel(BaseModel):
-    def __init__(self, id, description):
+    def __init__(self, id, name, description):
         super().__init__()
         self._id = id
+        self.name = name
         self._description = description
-
+        
     @staticmethod
     def get_table():
-        return "'3Dmodels'"
+        return "'Models'"
 
     def get_id(self):
         return self._id
@@ -23,4 +24,4 @@ class Dmodel(BaseModel):
         return dbhandler.getItems(Dmodel.get_table())
 
     def getAllFields(self):
-        return (self._id, self._description)
+        return (self._id, self.name, self._description)
