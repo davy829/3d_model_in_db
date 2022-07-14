@@ -2,10 +2,10 @@
 
 {% block content %}
 {{ super() }}
-{{name}}
+{{'Compas_3D_Files/' + filename}}
 <script>
     function preload() {
-        gun = loadModel("{{func('../Compas_3D_Files/' + name)}}", true)
+        gun = loadModel("{{url_for('static', filename = 'Compas_3D_Files/' + filename)}}", true)
     }
     function setup() {
         createCanvas(windowWidth, windowHeight, WEBGL)

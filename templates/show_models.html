@@ -3,13 +3,13 @@
 {% block content %}
 <ul>
 	{% for model in models %}
-	{% if ospath('Compas_3D_Files/' + toString(model.get_id()) + model.name) %}
+	{% if ospath('static/Compas_3D_Files/' + toString(model.get_id()) + model.name) %}
 	<li>
 		<ul>
 			<li>ID модели: {{model.get_id()}}</li>
 			<li>Название модели: {{model.name}}</li>
 			<li>Описание модели: {{model.get_description()}}</li>
-			<a href="{{url_for('show_model/' + toString(model.get_id()))}}"></a>	
+			<a href="{{url_for('show_model', id=model.get_id())}}">Просмотреть модель</a>	
 		</ul>
 	</li>
 	{% else %}

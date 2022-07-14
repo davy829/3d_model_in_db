@@ -6,7 +6,7 @@ import os
 from models.Dmodel import Dmodel
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'Compas_3D_Files'
+UPLOAD_FOLDER = 'static/Compas_3D_Files'
 if not os.path.exists(UPLOAD_FOLDER): os.makedirs(UPLOAD_FOLDER)
 print(os.listdir())
 
@@ -69,12 +69,13 @@ def show_models():
     models = [Dmodel(*model) for model in Dmodel.getAll(dbhandler)]
     return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str, db=dbhandler)
 
+@app.route('/show_model/', defaults={'id': 1})
 @app.route("/show_model/<int:id>")
 def show_model(id):
     model = Dmodel(*Dmodel.getItemByID(id, dbhandler))
     if not model:
         abort(404)
-    return render_template('show_model.html', name = str(model.get_id()) + model.name, func = os.path.abspath)
+    return render_template('show_model.html', filename = f"{model.get_id()}{model.name}")
 
 
 # Точка входа
