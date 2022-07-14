@@ -16,6 +16,7 @@ class BaseModel():
         return dbhandler.getItems(BaseModel.get_table())
 
     # Получить элемент модели по ID
+    @staticmethod
     def getItemByID(self, dbhandler: DBHandler) -> tuple:
         return dbhandler.getItemById(type(self).get_table(), self.get_id())
 

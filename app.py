@@ -1,5 +1,5 @@
 import time
-from flask import Flask, flash, g, redirect, render_template, request, url_for
+from flask import Flask, abort, flash, g, redirect, render_template, request, url_for
 import sqlite3
 from DBhandler.DBhandler import DBHandler
 import os
@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'Compas_3D_Files'
 if not os.path.exists(UPLOAD_FOLDER): os.makedirs(UPLOAD_FOLDER)
+print(os.listdir())
 
 app = Flask(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'database.db')))
@@ -67,6 +68,13 @@ def index():
 def show_models():
     models = [Dmodel(*model) for model in Dmodel.getAll(dbhandler)]
     return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str, db=dbhandler)
+
+@app.route("/show_model/<int:id>")
+def show_model(id):
+    model = Dmodel(*Dmodel.getItemByID(id, dbhandler))
+    if not model:
+        abort(404)
+    return render_template('show_model.html', name = model.name)
 
 
 # Точка входа

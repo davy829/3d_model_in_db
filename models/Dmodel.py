@@ -23,5 +23,10 @@ class Dmodel(BaseModel):
     def getAll(dbhandler: DBHandler) -> list:
         return dbhandler.getItems(Dmodel.get_table())
 
+    # Получить элемент модели по ID
+    @staticmethod
+    def getItemByID(id: int, dbhandler: DBHandler) -> tuple:
+        return dbhandler.getItemById(Dmodel.get_table(), id)
+
     def getAllFields(self):
         return (self._id, self.name, self._description)

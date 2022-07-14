@@ -8,7 +8,8 @@
 		<ul>
 			<li>ID модели: {{model.get_id()}}</li>
 			<li>Название модели: {{model.name}}</li>
-			<li>Описание модели: {{model.get_description()}}</li>	
+			<li>Описание модели: {{model.get_description()}}</li>
+			<a href="{{url_for('show_model/' + toString(model.get_id()))}}"></a>	
 		</ul>
 	</li>
 	{% else %}
