@@ -5,7 +5,7 @@
 {{name}}
 <script>
     function preload() {
-        gun = loadModel('../Compas_3D_Files/{{name}}', true)
+        gun = loadModel("{{func('../Compas_3D_Files/' + name)}}", true)
     }
     function setup() {
         createCanvas(windowWidth, windowHeight, WEBGL)

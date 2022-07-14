@@ -74,7 +74,7 @@ def show_model(id):
     model = Dmodel(*Dmodel.getItemByID(id, dbhandler))
     if not model:
         abort(404)
-    return render_template('show_model.html', name = str(model.get_id()) + model.name)
+    return render_template('show_model.html', name = str(model.get_id()) + model.name, func = os.path.abspath)
 
 
 # Точка входа
