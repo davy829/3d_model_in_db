@@ -64,10 +64,14 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/show_models")
+@app.route("/show_models", methods=["POST", "GET"])
 def show_models():
     models = [Dmodel(*model) for model in Dmodel.getAll(dbhandler)]
-    return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str, db=dbhandler)
+    if request.method == 'POST':
+        find_name = request.form['name']
+        find_desc = request.form['desc']
+        models = [model for model in models if find_name in model.name and find_desc in model.get_description()]
+    return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str, db=dbhandler, name=find_name, desc=find_desc)
 
 @app.route('/show_model/', defaults={'id': 1})
 @app.route("/show_model/<int:id>")

@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<form action="/show_models" method="post" class="inputForm">
+	<input type="text" name="name" value="{{name}}"></input>
+	<input type="text" name="desc" value="{{desc}}"></input>
+	<button type="submit" class="submitButton"> Найти </button>
+</form>
 <ul>
 	{% for model in models %}
 	{% if ospath('static/Compas_3D_Files/' + toString(model.get_id()) + model.name) %}
