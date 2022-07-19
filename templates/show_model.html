@@ -4,24 +4,51 @@
 {{ super() }}
 {{'Compas_3D_Files/' + filename}}
 <script>
+    let sf = 1, tx = 0, ty = 0;
+
     function preload() {
         gun = loadModel("{{url_for('static', filename = 'Compas_3D_Files/' + filename)}}", true)
     }
     function setup() {
-        createCanvas(windowWidth, windowHeight, WEBGL)
+        createCanvas(600, 600, WEBGL)
     }
     function draw() {
         background('LIGHTBLUE')
-        scale(2)
-        rotateZ(millis() / 10000)
-        rotateY(millis() / 10000)
-        rotateX(millis() / 10000)
+        angleMode(DEGREES);
+        // scale(1)
+        // orbitControl(1.5, 1.5, 1.5)
+        // // rotateZ(millis() / 10000)
+        // // rotateY(millis() / 10000)
+        // // rotateX(millis() / 10000)
         normalMaterial()//for colors
+        
+        scale(sf);
+        orbitControl(5);
+        rotateZ(180)
+        rotateY(-25)
+        rotateX(10)
         model(gun)
     }
     function windowResized() {
         resizeCanvas(windowWidth, windowHeight)
     }
-    console.log(1)
+
+    function applyScale(s) {
+        sf = sf * s;
+        tx = mouseX * (1 - s) + tx * s;
+        ty = mouseY * (1 - s) + ty * s;
+    }
+
+    window.addEventListener("wheel", function (e) {
+        applyScale(e.deltaY > 0 ? 1.05 : 0.95);
+    });
+
+    function keyPressed() {
+        if (key == '-') {
+            applyScale(0.95);
+        } else if (key == '+') {
+            applyScale(1.05);
+        }
+    }
 </script>
 {% endblock %}

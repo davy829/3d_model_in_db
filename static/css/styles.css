@@ -1,4 +1,10 @@
 body {
+    margin-left: 0rem;
+    margin-right: 0rem;
+}
+
+#defaultCanvas0 {
+    width: 100%;
     margin-left: 3rem;
     margin-right: 3rem;
 }
@@ -65,3 +71,5 @@ body {
 	border: 1px solid #FF4343;
 	background: #FF9C9C;
 }
+
+
