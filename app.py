@@ -83,13 +83,16 @@ def show_models():
         models = [model for model in models if find_name in model.name and find_desc in model.get_description()]
     return render_template("show_models.html", models=models, ospath=os.path.isfile, toString=str, db=dbhandler, name=find_name, desc=find_desc)
 
-@app.route('/show_model/', defaults={'id': 1})
-@app.route("/show_model/<int:id>")
+@app.route("/show_model/<int:id>", methods=["POST", "GET"])
 def show_model(id):
     model = Dmodel(*Dmodel.getItemByID(id, dbhandler))
     if not model:
         abort(404)
-    return render_template('show_model.html', filename = f"{model.get_id()}{model.name}")
+    if request.method == 'POST':
+        new_desc = request.form['desc']
+        model._description = new_desc
+        model.updateDescItem(dbhandler)
+    return render_template('show_model.html', filename = f"{model.get_id()}{model.name}", desc=model.get_description(), id=id)
 
 
 # Точка входа

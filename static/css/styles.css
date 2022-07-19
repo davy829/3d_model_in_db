@@ -1,75 +1,158 @@
 body {
-    margin-left: 0rem;
-    margin-right: 0rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
 }
 
 #defaultCanvas0 {
-    width: 100%;
-    margin-left: 3rem;
-    margin-right: 3rem;
+  width: 100%;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .inputForm {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin-top: 2rem;
+}
+
+.mainForm {
     display: flex;
     flex-direction: column;
     width: 30rem;
     margin: 0 auto;
 }
 
+.mainForm .submitButton {
+    margin-left: auto;
+}
+
+.mainForm h1 {
+    margin: 0 auto;
+}
+
 .fileName {
-    padding: 1rem 2rem 1rem 2rem;
-    /* width: 25rem; */
-    border-radius: 30px;
-    border-width: 1px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 1rem auto;
-    border-color: #925c93;
+  padding: 1rem 2rem 1rem 2rem;
+  /* width: 25rem; */
+  border-radius: 30px;
+  border-width: 1px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem auto;
+  border-color: #925c93;
 }
 
 .fileDescription {
-    resize: none;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    border: none;
-    overflow: auto;
-    outline: none;
+  resize: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  overflow: auto;
+  outline: none;
 
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .descriptionContainer {
-    border: 15px solid;
-    padding: 1rem 2rem 1rem 2rem;
-    border-radius: 30px;
-    border-width: 1px;
-    margin: 1rem auto;
-    border-color: #925c93;
+  border: 15px solid;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 30px;
+  border-width: 1px;
+  margin: 1rem auto;
+  border-color: #925c93;
 }
 
 .submitButton {
-    width: 10rem;
-    margin: 1rem auto;
-    padding: 1rem 1.5rem;
-    border-width: 0;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    background-color: rgba(235, 221, 238, 0.55);
+  width: 10rem;
+  margin: 1rem auto;
+  padding: 1rem 1.5rem;
+  border-width: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(213, 203, 255);
+  margin-left: 3rem;
 }
-.flash {padding: 10px;}
+.flash {
+  padding: 10px;
+}
 .flash.success {
-	border: 1px solid #21DB56;
-	background: #AEFFC5;
+  border: 1px solid #21db56;
+  background: #aeffc5;
 }
 .flash.error {
-	border: 1px solid #FF4343;
-	background: #FF9C9C;
+  border: 1px solid #ff4343;
+  background: #ff9c9c;
+}
+header {
+  height: 60px; /* Высота шапки */
+  background-color: #1c1c1c; /* Цвет фона  */
+  display: flex; /* Включаем гибкость блока */
+}
+.mainmenu {
+  list-style: none; /* Убираем маркеры в списке */
+  display: flex; /* Включаем гибкость блока */
+  justify-content: start; /* Выравниваем по левому краю ссылки */
 }
 
+.mainmenu li a {
+  color: white; /* Цвет текста */
+  padding: 22px; /* Создаем поля вокруг ссылок по 22 пикселя */
+  font-size: 20px; /* Размер шрифта */
+  text-decoration: none; /* Убираем подчеркивание ссылок */
+}
 
+.mainmenu li a:hover {
+  background-color: #2c3e50; /* Цвет фона при наведении на кнопку */
+}
+
+.modelsTable {
+  background-color: aliceblue;
+  opacity: 0.9;
+  border: 1px solid rgb(255, 255, 255);
+  border-collapse: collapse;
+  font-family: "Montserrat", sans-serif;
+  margin: 0 auto;
+}
+
+th,
+td {
+  border: 1px solid rgb(221, 221, 221);
+  padding: 0.6rem;
+}
+
+.modelsInputContainer {
+  margin-left: 0px;
+}
+
+.inputField {
+  font-family: "Montserrat", sans-serif;
+  margin: 0.3rem;
+  border-radius: 50px;
+  border-width: 1px;
+  border-color: rgb(211, 211, 211);
+  padding: 0.5rem 1rem;
+  width: 30rem;
+  font-size: 1rem;
+}
+
+.showModelContainer {
+  margin-left: 3rem;
+}
+
+.showModelContainer h1 {
+  margin-left: 3rem;
+}
+
+.modelsInputContainer {
+    margin-left: 3rem;
+}
+
+.modelsInputContainer h2 {
+    margin-left: 3rem;
+}

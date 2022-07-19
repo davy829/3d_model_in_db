@@ -2,12 +2,22 @@
 
 {% block content %}
 {{ super() }}
-{{'Compas_3D_Files/' + filename}}
+<div class="showModelContainer">
+    <h1>Описание</h1>
+
+    <form action="{{url_for('show_model', id=id)}}" method="post" class="inputForm">
+        <!-- <div class="modelsInputContainer"> -->
+            <input class="inputField" type="text" name="desc" value="{{desc}}"></input>
+            <button type="submit" class="submitButton"> Сохранить </button>
+        <!-- </div> -->
+    </form>
+</div>
+
 <script>
     let sf = 1, tx = 0, ty = 0;
 
     function preload() {
-        gun = loadModel("{{url_for('static', filename = 'Compas_3D_Files/' + filename)}}", true)
+        viewmodel = loadModel("{{url_for('static', filename = 'Compas_3D_Files/' + filename)}}", true)
     }
     function setup() {
         createCanvas(600, 600, WEBGL)
@@ -15,19 +25,14 @@
     function draw() {
         background('LIGHTBLUE')
         angleMode(DEGREES);
-        // scale(1)
-        // orbitControl(1.5, 1.5, 1.5)
-        // // rotateZ(millis() / 10000)
-        // // rotateY(millis() / 10000)
-        // // rotateX(millis() / 10000)
         normalMaterial()//for colors
-        
+
         scale(sf);
         orbitControl(5);
         rotateZ(180)
         rotateY(-25)
         rotateX(10)
-        model(gun)
+        model(viewmodel)
     }
     function windowResized() {
         resizeCanvas(windowWidth, windowHeight)

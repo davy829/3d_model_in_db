@@ -2,25 +2,34 @@
 
 {% block content %}
 <form action="/show_models" method="post" class="inputForm">
-	<input type="text" name="name" value="{{name}}"></input>
-	<input type="text" name="desc" value="{{desc}}"></input>
-	<button type="submit" class="submitButton"> Найти </button>
+	<div class="modelsInputContainer">
+		<h2>Поиск по:</h2>
+		<input class="inputField" placeholder="Название" type="text" name="name" value="{{name}}"></input>
+		<input class="inputField" placeholder="Описание" type="text" name="desc" value="{{desc}}"></input>
+		<button type="submit" class="submitButton"> Найти </button>
+	</div>
 </form>
-<ul>
+
+<table>
+	<tr>
+		<th>ID модели</th>
+		<th>Название модели</th>
+		<th>Описание модели</th>
+		<th>Просмотреть модель</th>
+	</tr>
 	{% for model in models %}
 	{% if ospath('static/Compas_3D_Files/' + toString(model.get_id()) + model.name) %}
-	<li>
-		<ul>
-			<li>ID модели: {{model.get_id()}}</li>
-			<li>Название модели: {{model.name}}</li>
-			<li>Описание модели: {{model.get_description()}}</li>
-			<a href="{{url_for('show_model', id=model.get_id())}}">Просмотреть модель</a>	
-		</ul>
-	</li>
+
+	<tr>
+		<td>{{model.get_id()}}</td>
+		<td>{{model.name}}</td>
+		<td>{{model.get_description()}}</td>
+		<td><a href="{{url_for('show_model', id=model.get_id())}}">Просмотр</a></td>
+	</tr>
+
 	{% else %}
-	<div style="display: none; height: 0px">{{ model.deleteItemByID(db) }}</div>
+	<div style="display: none; height: 0px; width: 0px;">{{ model.deleteItemByID(db) }}</div>
 	{% endif %}
-	<br>
 	{% endfor %}
-</ul>
+</table>
 {% endblock %}

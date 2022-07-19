@@ -49,6 +49,17 @@ class DBHandler():
             return False
         return True
 
+    # Обновить элемент по ID
+    def updateItemById(self, table, value, id):
+        print(id, " ", table, " ", value)
+        try:
+            self.__cur.execute(f"UPDATE {table} set Description = '{value}' WHERE ID = {id};")
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print('Ошибка удаления записи из БД', e)
+            return False
+        return True
+
     # Получить элемент по значению поля
     def getItemByField(self, table, field, value):
         try:

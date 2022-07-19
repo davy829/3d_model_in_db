@@ -4,13 +4,15 @@
 {% for cat, msg in get_flashed_messages(True) %}
 <div class="flash {{cat}}">{{msg}}</div>
 {% endfor %}
-<form action="/" method="post" class="inputForm" enctype="multipart/form-data">
-    <h1>давай давай в бд</h1>
-    <input type="file" accept=".obj, .zip, .7zip, .7z, .rar" name="fileHandler" class="fileName" />
-    <div class="descriptionContainer">
-        <textarea cols="40" rows="5" name="fileDescription" class="fileDescription"></textarea>
-    </div>
-    <button type="submit" class="submitButton"> полетела </button>
-</form>
+<div class="mainForm">
+    <form action="/" method="post" class="inputForm" enctype="multipart/form-data">
+        <h1>давай давай в бд</h1>
+        <input type="file" accept=".obj, .zip, .7zip, .7z, .rar" name="fileHandler" class="fileName" />
+        <div class="descriptionContainer">
+            <textarea placeholder="Описание" cols="40" rows="5" name="fileDescription" class="fileDescription"></textarea>
+        </div>
+        <button type="submit" class="submitButton"> полетела </button>
+    </form>
+</div>
 
 {% endblock %}

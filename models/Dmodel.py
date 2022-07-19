@@ -30,3 +30,6 @@ class Dmodel(BaseModel):
 
     def getAllFields(self):
         return (self._id, self.name, self._description)
+    
+    def updateDescItem(self, dbhandler: DBHandler) -> bool:
+        return dbhandler.updateItemById(type(self).get_table(), self._description, self._id)
