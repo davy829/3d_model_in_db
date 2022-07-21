@@ -7,14 +7,24 @@
 
     <form action="{{url_for('show_model', id=id)}}" method="post" class="inputForm">
         <!-- <div class="modelsInputContainer"> -->
-            <input class="inputField" type="text" name="desc" value="{{desc}}"></input>
-            <button type="submit" class="submitButton"> Сохранить </button>
+        <input class="inputField" type="text" name="desc" value="{{desc}}"></input>
+        <button type="submit" class="submitButton"> Сохранить </button>
         <!-- </div> -->
     </form>
+    <h3>Выберите цвет модели</h3>
+    <input type="color" id="modelColor" name="head" value="#ffffff">
 </div>
 
 <script>
     let sf = 1, tx = 0, ty = 0;
+
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return [parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+        ]
+    }
 
     function preload() {
         viewmodel = loadModel("{{url_for('static', filename = 'Compas_3D_Files/' + filename)}}", true)
@@ -25,10 +35,9 @@
     function draw() {
         background('LIGHTBLUE')
         angleMode(DEGREES);
-        normalMaterial()//for colors
-
-        scale(sf);
+        fill(...hexToRgb(document.getElementById("modelColor").value))
         orbitControl(5);
+        scale(sf);
         rotateZ(180)
         rotateY(-25)
         rotateX(10)

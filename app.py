@@ -55,7 +55,7 @@ def index():
                     namelist = [name for name in zip.namelist() if name.endswith('.obj')]
                     for file in namelist:
                         id = time.time_ns()
-                        Dmodel(id, file, None).addItem(dbhandler)  
+                        Dmodel(id, file, description).addItem(dbhandler)  
                         zip.extract(file, UPLOAD_FOLDER)
                         os.rename(UPLOAD_FOLDER + file, f"{UPLOAD_FOLDER + str(id) + file}") 
             else:    
